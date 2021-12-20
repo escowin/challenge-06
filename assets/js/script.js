@@ -1,6 +1,6 @@
 var APIKey = "0962492a18dc2e6ff1c567a057f043f2";
-var city = document.querySelector('.city'); 
-var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+var city = document.querySelector('.inputValue'); 
+var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 // var button = document.querySelector('.button')
 // var inputValue = document.querySelector('.inputValue')
@@ -9,7 +9,16 @@ var queryURL = "api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" +
 // var wind = document.querySelector('.wind')
 // var uvIndex = document.querySelector('.uvIndex')
 
-fetch(queryURL) 
+var getCity = function() {
+    fetch(queryURL)
+};
+
+fetch(queryURL).then(function(response) {
+    console.log(response);
+    response.json().then(function(data) {
+      console.log(data);
+    });
+  });
 
 // // #1 see the weather outlook for multiple cities
 

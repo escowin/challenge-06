@@ -5,38 +5,43 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>W E A T H E R</title>
-        <link rel="stylesheet" href="./assets/css/style.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />"
+        <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        <header>
-            <div>
-                <h1>Weather D A S H B O A R D</h1>                
+        <header class="b-container fluid">
+            <div class="row">
+                <h1 class="col text-center bg-primary bg-gradient p-4 text-light">Weather D A S H B O A R D</h1>                
             </div>
         </header>
 
-        <div>
-            <div>
+        <div class="b-container fluid">
+            <div class="row bg-info bg-gradient justify-content-around">
                 <aside class="col col-3 bg-light m-2 rounded">
-                    <div>
+                    <div class="search">
                         <h2>Search for a C I T Y:</h2>
                         <input type="text" class="inputValue">
                         <input type="submit" value="submit" class="button">                    
+                    </div>
+                    <div>
+                        <div id="search-history">
+                          <!-- dynamic js   -->
+                        </div>
                     </div>
                 </aside>
                 <main class="col col-8 bg-light m-2 rounded">
                     <div>
                         <div class="display">
                             <h2 class="city"></h2>
-                            <p class="temp"></p>
-                            <p class="wind"></p>
-                            <p class="humidity"></p>
-                            <p class="uvIndex"></p>
+                            <div class="temp"></div>
+                            <div class="wind"></div>
+                            <div class="humidity"></div>
+                            <div class="uvIndex"></div>
                         </div>
-                     <!-- current city's weather -->
                     </div>
                     <div>
                         <h2>5-DAY F O R E C A S T:</h2>
-                        <!-- current city's five day forecast -->
+                        <div class="row justify-content-around" id="fiveDayForecast"></div>
                     </div>
                 </main>
             </div>
