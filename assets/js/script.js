@@ -1,6 +1,9 @@
 var APIKey = "0962492a18dc2e6ff1c567a057f043f2";
-var city = document.querySelector('.inputValue'); 
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
+
+// DOM ELEMENTS
+var searchBtnEl = document.querySelector("search-btn");
+var searchInputEl = document.querySelector("search-input");
 
 // var button = document.querySelector('.button')
 // var inputValue = document.querySelector('.inputValue')
