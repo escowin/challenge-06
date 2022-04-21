@@ -4,11 +4,11 @@
     font-family: 'Montserrat', sans-serif;
     font-variant: small-caps;
     color: rgb(212, 236, 255);
-
     /* border: 1px solid red; */
 }
 
-h1, h2 {
+h1,
+h2 {
     padding: 10px;
     font-weight: bolder;
 }
@@ -30,14 +30,17 @@ body {
     background-color: rgb(212, 236, 255);
 }
 
-header, .container, footer {
+header,
+.container,
+footer {
     margin: 10px;
     padding: 20px;
     background-color: rgb(44, 106, 160);
     border-radius: 10px;
 }
 
-footer, .container {
+footer,
+.container {
     display: flex;
     justify-content: space-between;
 }
@@ -52,12 +55,20 @@ footer, .container {
     padding: 10px;
 }
 
-#search input, #search button {
+#search input,
+#search button {
     border-radius: 10px;
     border: none;
+    padding: 10px;
     margin: 10px 0;
+}
+
+#search input {
+    width: 95%;
+}
+
+#search button {
     width: 100%;
-    height: 40px;
 }
 
 /* MAIN | CURRENT CITY */
