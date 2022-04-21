@@ -2,11 +2,10 @@ var APIKey = "0962492a18dc2e6ff1c567a057f043f2";
 var queryURL = "https://api.openweathermap.org/data/2.5/weather?q=" + city + "&appid=" + APIKey;
 
 // DOM ELEMENTS
-var searchBtnEl = document.querySelector("search-btn");
-var searchInputEl = document.querySelector("search-input");
+var searchBtnEl = document.querySelector("#search-btn");
+var searchInputEl = document.querySelector("#search-input");
+var searchHistoryEl = document.querySelector("#search-history");
 
-// var button = document.querySelector('.button')
-// var inputValue = document.querySelector('.inputValue')
 // var city = document.querySelector('.city')
 // var temp = document.querySelector('.temp')
 // var wind = document.querySelector('.wind')
