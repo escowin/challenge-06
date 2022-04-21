@@ -5,49 +5,59 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>W E A T H E R</title>
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />"
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />" -->
+
         <link rel="stylesheet" href="./assets/css/style.css" />
     </head>
     <body>
-        <header class="b-container fluid">
-            <div class="row">
-                <h1 class="col text-center bg-primary bg-gradient p-4 text-light">Weather D A S H B O A R D</h1>                
-            </div>
+        <header>
+            <h1><a href="./">&mdash; W E A T H E R &mdash;</a></h1>                
         </header>
 
-        <div class="b-container fluid">
-            <div class="row bg-info bg-gradient justify-content-around">
-                <aside class="col col-3 bg-light m-2 rounded">
-                    <div class="search">
-                        <h2>Search for a C I T Y:</h2>
-                        <input type="text" class="inputValue">
-                        <input type="submit" value="submit" class="button">                    
-                    </div>
-                    <div>
-                        <div id="search-history">
-                          <!-- dynamic js   -->
-                        </div>
-                    </div>
-                </aside>
-                <main class="col col-8 bg-light m-2 rounded">
-                    <div>
-                        <div class="display">
-                            <h2 class="city"></h2>
-                            <div class="temp"></div>
-                            <div class="wind"></div>
-                            <div class="humidity"></div>
-                            <div class="uvIndex"></div>
-                        </div>
-                    </div>
-                    <div>
-                        <h2>5-DAY F O R E C A S T:</h2>
-                        <div class="row justify-content-around" id="fiveDayForecast"></div>
-                    </div>
-                </main>
-            </div>
+        <div class="container">
+            <!-- SIDE BAR -->
+            <aside id="container-left">
+                <section>
+                    <!-- SEARCH INPUT -->
+                    <article>
+                        <h2>Search</h2>
+                        <form id="search">
+                            <input type="text" placeholder="Enter a city"/>
+                            <button type="submit">Search</button>
+                        </form>
+                    </article>
+
+                    <!-- SEARCH HISTORY | PAST CITIES-->
+                    <article id="search-history">
+                        <h2>History</h2>
+                    </article>
+                </section>
+            </aside>
+
+            <!-- CURRENT CITY -->
+            <main id="container-right">
+                <!-- CURRENT CITY | TODAY -->
+                <section>
+                    <h2>The Weather Today</h2>
+                    <article>City</article>
+                </section>
+                
+                <!-- CURRENT CITY | 5-DAY FORECAST -->
+                <section>
+                    <h2>Five Day Forecast</h2>
+                    <article>Future</article>
+                </section>
+            </main>
         </div>
+
         <footer>
-            challenge 06 by <a href="https://github.com/escowin">Edwin Escobar</a>
+            <div>
+                W E A T H E R by <a href="https://github.com/escowin">Edwin Escobar</a>
+                <br />
+                challenge 06
+            </div>
+            <div>&copy; 2022 Escowin Art</div>
         </footer>
         <script src="./assets/js/script.js"></script>
     </body>

@@ -13,12 +13,12 @@ var getCity = function() {
     fetch(queryURL)
 };
 
-fetch(queryURL).then(function(response) {
-    console.log(response);
-    response.json().then(function(data) {
-      console.log(data);
-    });
+fetch(queryURL)fetch(queryURL).then(function(response) {
+  console.log(response);
+  response.json().then(function(data) {
+    console.log(data);
   });
+});
 
 // // #1 see the weather outlook for multiple cities
 
