@@ -34,10 +34,10 @@ uvBadge.setAttribute('class', 'uv-badge');
 
 // text content
 cityHeader.textContent = `${city} (${date})`;
-tempEl.textContent = `temp ${tempF}°F`;
-humidityEl.textContent = `humidity ${tempF}°F`;
-windEl.textContent = `wind speed ${tempF}°F`;
-uvIndex.textContent = `uv ${tempF}°F`;
+tempEl.textContent = `temp ${tempF}°f`;
+humidityEl.textContent = `humidity ${humidity}%`;
+windEl.textContent = `wind speed ${windMph}mph`;
+uvIndex.textContent = 'uv index';
 
 // appending elements
 card.append(cityHeader, cardText);
@@ -46,18 +46,31 @@ cardText.append(tempEl, humidityEl, windEl, uvIndex);
 uvIndex.append(uvBadge);
 
 // UV Index Indicator
-// if less than 3 GREEN
-// else if less than 7 YELLOW
-// else (greater than 7) RED
+if (uvi <3){
+  uvIndex.classList.add('btn-low'); 
+}else if (uvi <7){
+  uvIndex.classList.add('btn-moderate');
+}else{
+  uvIndex.classList.add('btn-high');
+}
 
 // DATE
 
 
 // SEARCH FOR CITY
-function searchCity() {};
 
-// DISPLAY CURRENT CITY'S WEATEHER & FORECAST
-function displayCurrentWeather() {
+
+// SEARCH HISTORY
+
+
+// FUNCTIONS | WEATHER API
+var getWeather = function(city, weather) {
+  let temp = weather.temp;
+  let humidity = weather.humidity;
+  let uvi = weather.uvi;
+  let icon = weather.weather[0].icon;
+  let description =weather.weather[0].description
+  console.log(temp, humidity, uvi, icon, description);
 };
 
 

@@ -80,3 +80,13 @@ footer,
     display: flex;
     justify-content: space-around;
 }
+
+.btn-low {
+    background-color: rgb(45, 105, 45);
+}
+.btn-moderate {
+    background-color: rgb(167, 154, 55);
+}
+.btn-high {
+    background-color: rgb(123, 18, 18);
+}
