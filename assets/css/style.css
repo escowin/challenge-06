@@ -75,3 +75,7 @@ footer,
 #container-right {
     flex-grow: 1;
 }
+
+.flex {
+    display: flex;
+}

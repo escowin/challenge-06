@@ -9,6 +9,26 @@ var searchHistoryEl = document.querySelector("#search-history");
 var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
 
+// DYNAMICALLY CREATING HTML
+<article>
+  <h3>City </h3>
+  <div>
+      <p>temp
+      <p>humidity
+      <p>wind speed
+      <p>UV index
+    </div>
+</article>
+var 
+var
+var
+var
+var
+var
+var
+var
+var
+
 // SEARCH FOR CITY
 function searchCity() {};
 
