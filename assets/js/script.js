@@ -26,6 +26,15 @@ var getWeather = function(city) {
 var formSubmitHandler = function(event) {
   event.preventDefault();
   console.log(event);
+
+  var city = searchInputEl.value.trim();
+
+  if (city) {
+    getWeather(city);
+    searchInputEl.value = "";
+  } else {
+    alert("enter city");
+  }
 };
 
 // DYNAMICALLY CREATING HTML
