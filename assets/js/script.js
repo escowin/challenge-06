@@ -1,10 +1,18 @@
+// DOM ELEMENTS
+var searchFormEl = document.querySelector("#search-form")
+var searchInputEl = document.querySelector("#search-input");
+var searchBtnEl = document.querySelector("#search-btn");
+var searchHistoryEl = document.querySelector("#search-history");
+var currentWeatherEl = document.querySelector("#current-weather");
+var forecastEl = document.querySelector("#forecast");
+
+// API URL
 var apiRootUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-// var cityName = "Austin";
 var apiKey = "&appid=0962492a18dc2e6ff1c567a057f043f2";
 var searchHistory = [];
 
+// FUNCTION | WEATHER API
 var getWeather = function(city) {
-  // API URL FORMAT
   var apiUrl = apiRootUrl + city + apiKey;
 
   // API URL REQUEST
@@ -15,12 +23,10 @@ var getWeather = function(city) {
   });
 };
 
-// DOM ELEMENTS
-var searchBtnEl = document.querySelector("#search-btn");
-var searchInputEl = document.querySelector("#search-input");
-var searchHistoryEl = document.querySelector("#search-history");
-var currentWeatherEl = document.querySelector("#current-weather");
-var forecastEl = document.querySelector("#forecast");
+var formSubmitHandler = function(event) {
+  event.preventDefault();
+  console.log(event);
+};
 
 // DYNAMICALLY CREATING HTML
 var cardEl = document.createAttribute('article');
@@ -88,4 +94,5 @@ var uvBadge = document.createAttribute('button');
 
 // function displayForecast() {};
 
-getWeather("Austin");
+searchFormEl.addEventListener("submit", formSubmitHandler);
+// getWeather("Austin");
