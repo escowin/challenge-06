@@ -1,10 +1,19 @@
 var apiRootUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
-var cityName = "London";
+// var cityName = "Austin";
 var apiKey = "&appid=0962492a18dc2e6ff1c567a057f043f2";
 var searchHistory = [];
 
-var response = fetch(apiRootUrl + cityName + apiKey);
-console.log(response);
+var getWeather = function(city) {
+  // API URL FORMAT
+  var apiUrl = apiRootUrl + city + apiKey;
+
+  // API URL REQUEST
+  fetch(apiUrl).then(function(response) {
+    response.json().then(function(data) {
+      console.log(data);
+    });
+  });
+};
 
 // DOM ELEMENTS
 var searchBtnEl = document.querySelector("#search-btn");
@@ -25,37 +34,37 @@ var uvIndex = document.createAttribute('p');
 var uvBadge = document.createAttribute('button');
 
 // class attributes
-cardEl.setAttribute('class', 'card');
-cityHeader.setAttribute('class', 'city-header');
-weatherIcon.setAttribute('class', 'img');
-cardText.setAttribute('class', 'card-text');
-tempEl.setAttribute('class', 'temp');
-humidityEl.setAttribute('class', 'humidity');
-windEl.setAttribute('class', 'windspeed');
-uvIndex.setAttribute('class', 'uv-index');
-uvBadge.setAttribute('class', 'uv-badge');
+// cardEl.setAttribute('class', 'card');
+// cityHeader.setAttribute('class', 'city-header');
+// weatherIcon.setAttribute('class', 'img');
+// cardText.setAttribute('class', 'card-text');
+// tempEl.setAttribute('class', 'temp');
+// humidityEl.setAttribute('class', 'humidity');
+// windEl.setAttribute('class', 'windspeed');
+// uvIndex.setAttribute('class', 'uv-index');
+// uvBadge.setAttribute('class', 'uv-badge');
 
 // text content
-cityHeader.textContent = `${city} (${date})`;
-tempEl.textContent = `temp ${tempF}°f`;
-humidityEl.textContent = `humidity ${humidity}%`;
-windEl.textContent = `wind speed ${windMph}mph`;
-uvIndex.textContent = 'uv index';
+// cityHeader.textContent = `${city} (${date})`;
+// tempEl.textContent = `temp ${tempF}°f`;
+// humidityEl.textContent = `humidity ${humidity}%`;
+// windEl.textContent = `wind speed ${windMph}mph`;
+// uvIndex.textContent = 'uv index';
 
 // appending elements
-card.append(cityHeader, cardText);
-cityHeader.append(weatherIcon);
-cardText.append(tempEl, humidityEl, windEl, uvIndex);
-uvIndex.append(uvBadge);
+// card.append(cityHeader, cardText);
+// cityHeader.append(weatherIcon);
+// cardText.append(tempEl, humidityEl, windEl, uvIndex);
+// uvIndex.append(uvBadge);
 
 // UV Index Indicator
-if (uvi <3){
-  uvIndex.classList.add('btn-low'); 
-}else if (uvi <7){
-  uvIndex.classList.add('btn-moderate');
-}else{
-  uvIndex.classList.add('btn-high');
-}
+// if (uvi <3){
+//   uvIndex.classList.add('btn-low'); 
+// }else if (uvi <7){
+//   uvIndex.classList.add('btn-moderate');
+// }else{
+//   uvIndex.classList.add('btn-high');
+// }
 
 // DATE
 
@@ -67,14 +76,16 @@ if (uvi <3){
 
 
 // FUNCTIONS | WEATHER API
-var getWeather = function(city, weather) {
-  let temp = weather.temp;
-  let humidity = weather.humidity;
-  let uvi = weather.uvi;
-  let icon = weather.weather[0].icon;
-  let description =weather.weather[0].description
-  console.log(temp, humidity, uvi, icon, description);
-};
+// var getWeather = function(city, weather) {
+//   let temp = weather.temp;
+//   let humidity = weather.humidity;
+//   let uvi = weather.uvi;
+//   let icon = weather.weather[0].icon;
+//   let description =weather.weather[0].description
+//   console.log(temp, humidity, uvi, icon, description);
+// };
 
 
 // function displayForecast() {};
+
+getWeather("Austin");
