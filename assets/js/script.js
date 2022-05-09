@@ -1,6 +1,10 @@
-var apiRootUrl = "https://api.openweathermap.org";
-var apiKey = "0962492a18dc2e6ff1c567a057f043f2";
+var apiRootUrl = "https://api.openweathermap.org/data/2.5/weather?q=";
+var cityName = "London";
+var apiKey = "&appid=0962492a18dc2e6ff1c567a057f043f2";
 var searchHistory = [];
+
+var response = fetch(apiRootUrl + cityName + apiKey);
+console.log(response);
 
 // DOM ELEMENTS
 var searchBtnEl = document.querySelector("#search-btn");
@@ -10,7 +14,6 @@ var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
 
 // DYNAMICALLY CREATING HTML
-// element creation
 var cardEl = document.createAttribute('article');
 var cityHeader = document.createAttribute('h3');
 var weatherIcon = document.createAttribute('img');
@@ -74,4 +77,4 @@ var getWeather = function(city, weather) {
 };
 
 
-function displayForecast() {};
+// function displayForecast() {};
