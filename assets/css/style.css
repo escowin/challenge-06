@@ -45,33 +45,44 @@ footer,
     justify-content: space-between;
 }
 
-/* ASIDE | SEARCH */
+/* ASIDE | search-form */
 #container-left {
     width: 25vw;
     margin-right: 20px;
 }
 
-#container-left form {
+#search-form {
     padding: 10px;
 }
 
-#search input,
-#search button {
+#search-input,
+#search-btn {
     border-radius: 10px;
     border: none;
     padding: 10px;
     margin: 10px 0;
+    color: black;
+    font-weight: bolder;
 }
 
-#search input {
-    width: 95%;
+#search-input {
+    width: 90%;
 }
 
-#search button {
+#search-input:focus {
+    background-color: bisque;
+    outline: none;
+}
+
+#search-btn {
     width: 100%;
 }
 
+
 /* MAIN | CURRENT CITY */
+.card {
+    background-color: rgba(26, 48, 56, 0.75);
+}
 #container-right {
     flex-grow: 1;
 }

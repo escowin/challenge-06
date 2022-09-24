@@ -6,23 +6,23 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>W E A T H E R</title>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
-        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />" -->
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />"
         <link rel="stylesheet" href="./assets/css/style.css" />
+        <script defer src="./assets/js/script.js"></script>
     </head>
     <body>
         <header>
             <h1><a href="./">&mdash; W E A T H E R &mdash;</a></h1>                
         </header>
 
-        <div class="container">
+        <section class="container">
             <!-- SIDE BAR -->
             <aside id="container-left">
                 <!-- SEARCH INPUT -->
                 <section>
                     <h2>Search</h2>
-                    <form id="search">
-                        <input type="text" placeholder="Enter a city"
+                    <form id="search-form">
+                        <input type="text" placeholder="ex. Austin"
                         id="search-input"/>
                         <button type="submit" id="search-btn">Search</button>
                     </form>
@@ -31,101 +31,37 @@
                 <!-- SEARCH HISTORY | PAST CITIES-->
                 <section id="search-history">
                     <h2>History</h2>
-                    <div class="card" id="history-card">
-                        <article>Old City</article>
-                        <article>Old City</article>
-                        <article>Old City</article>
-                        <article>Old City</article>
-                        <article>Old City</article>
-                    </div>
                 </section>
             </aside>
 
             <!-- CURRENT CITY -->
             <main id="container-right">
                 <!-- CURRENT CITY | TODAY -->
-                <section id="current-weather">
+                <section>
                     <h2>The Weather Today</h2>
                     <article class="card">
-                        <h3 class="city-header">City</h3>
+                        <h3 class="city-header" id="current-city"></h3>
                         <img class="weather-icon"/>
-                        <div class="card-text">
-                            <p class="temp">temp</p>
-                            <p class="humidity">humidity</p>
-                            <p class="windspeed">wind speed</p>
-                            <p class="uv-index">uv index
-                                <button class="uv-badge"></button>
-                            </p>
+                                                
+                        <div class="card-text" id="current-weather">
+                            <p id="temp">temp</p>
+                            <p id="humidity">humidity</p>
+                            <p id="wind-speed">wind speed</p>
+                            <p id="current-conditions">current conditions</p>
                         </div>
+                        
                     </article>
                 </section>
                 
                 <!-- CURRENT CITY | 5-DAY FORECAST -->
-                <section>
-                    <h2>Five Day Forecast</h2>
-                    <div class="flex">
-                    <article id="forecast">
-                        <h3>Day 1 </h3>
-                        <div>
-                            <p>temp</p>
-                            <p>humidity</p>
-                            <p>wind speed</p>
-                            <p>UV index</p>
-                        </div>
-                    </article>
-
-                    <article id="forecast">
-                        <h3>Day 2 </h3>
-                        <div>
-                            <p>temp</p>
-                            <p>humidity</p>
-                            <p>wind speed</p>
-                            <p>UV index</p>
-                        </div>
-                    </article>
-
-                    <article id="forecast">
-                        <h3>Day 3 </h3>
-                        <div>
-                            <p>temp</p>
-                            <p>humidity</p>
-                            <p>wind speed</p>
-                            <p>UV index</p>
-                        </div>
-                    </article>
-
-                    <article id="forecast">
-                        <h3>Day 4 </h3>
-                        <div>
-                            <p>temp</p>
-                            <p>humidity</p>
-                            <p>wind speed</p>
-                            <p>UV index</p>
-                        </div>
-                    </article>
-
-                    <article id="forecast">
-                        <h3>Day 5 </h3>
-                        <div>
-                            <p>temp</p>
-                            <p>humidity</p>
-                            <p>wind speed</p>
-                            <p>UV index</p>
-                        </div>
-                    </article>
-                    </div>
+                <section id="forecast-container">
+                    <h2>24 Hour Forecast</h2>
                 </section>
             </main>
-        </div>
+        </section>
 
         <footer>
-            <div>
-                W E A T H E R by <a href="https://github.com/escowin">Edwin Escobar</a>
-                <br />
-                challenge 06
-            </div>
-            <div>&copy; 2022 Escowin Art</div>
+            <p><span id="copyright"></span><a href="https://github.com/escowin/weather-dashboard" target="_blank">Edwin Escobar</a></p>
         </footer>
-        <script src="./assets/js/script.js"></script>
     </body>
 </html>

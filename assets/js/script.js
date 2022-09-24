@@ -1,77 +1,126 @@
-var apiRootUrl = "https://api.openweathermap.org";
-var apiKey = "0962492a18dc2e6ff1c567a057f043f2";
-var searchHistory = [];
-
-// DOM ELEMENTS
-var searchBtnEl = document.querySelector("#search-btn");
+// data.global dom
+var searchFormEl = document.querySelector("#search-form")
 var searchInputEl = document.querySelector("#search-input");
 var searchHistoryEl = document.querySelector("#search-history");
-var currentWeatherEl = document.querySelector("#current-weather");
-var forecastEl = document.querySelector("#forecast");
 
-// DYNAMICALLY CREATING HTML
-// element creation
-var cardEl = document.createAttribute('article');
-var cityHeader = document.createAttribute('h3');
-var weatherIcon = document.createAttribute('img');
-var cardText = document.createAttribute('div');
-var tempEl = document.createAttribute('p');
-var humidityEl = document.createAttribute('p');
-var windEl = document.createAttribute('p');
-var uvIndex = document.createAttribute('p');
-var uvBadge = document.createAttribute('button');
+// logic.fetching api data
+var getWeather = function(city) {
+  var location = city;
+  var key = "0962492a18dc2e6ff1c567a057f043f2";
+  var current = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${key}&units=imperial`;
+  var forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${key}&cnt=8&units=imperial`;
 
-// class attributes
-cardEl.setAttribute('class', 'card');
-cityHeader.setAttribute('class', 'city-header');
-weatherIcon.setAttribute('class', 'img');
-cardText.setAttribute('class', 'card-text');
-tempEl.setAttribute('class', 'temp');
-humidityEl.setAttribute('class', 'humidity');
-windEl.setAttribute('class', 'windspeed');
-uvIndex.setAttribute('class', 'uv-index');
-uvBadge.setAttribute('class', 'uv-badge');
-
-// text content
-cityHeader.textContent = `${city} (${date})`;
-tempEl.textContent = `temp ${tempF}°f`;
-humidityEl.textContent = `humidity ${humidity}%`;
-windEl.textContent = `wind speed ${windMph}mph`;
-uvIndex.textContent = 'uv index';
-
-// appending elements
-card.append(cityHeader, cardText);
-cityHeader.append(weatherIcon);
-cardText.append(tempEl, humidityEl, windEl, uvIndex);
-uvIndex.append(uvBadge);
-
-// UV Index Indicator
-if (uvi <3){
-  uvIndex.classList.add('btn-low'); 
-}else if (uvi <7){
-  uvIndex.classList.add('btn-moderate');
-}else{
-  uvIndex.classList.add('btn-high');
-}
-
-// DATE
-
-
-// SEARCH FOR CITY
-
-
-// SEARCH HISTORY
-
-
-// FUNCTIONS | WEATHER API
-var getWeather = function(city, weather) {
-  let temp = weather.temp;
-  let humidity = weather.humidity;
-  let uvi = weather.uvi;
-  let icon = weather.weather[0].icon;
-  let description =weather.weather[0].description
-  console.log(temp, humidity, uvi, icon, description);
+  fetch(current).then(function(response){
+    response.json().then(function(data) {
+      displayCurrentWeather(data);
+    });
+  });
+  fetch(forecast).then(function(response){
+    response.json().then(function(data) {
+      displayForecast(data);
+    });
+  });
 };
 
+// logic.display current weather data
+var displayCurrentWeather = function(city) {
+  // dom elements
+  var currentCityEl = document.getElementById("current-city");
+  var tempEl = document.getElementById("temp");
+  var humidityEl = document.getElementById("humidity");
+  var windSpeedEl = document.getElementById("wind-speed");
+  var currentConditionsEl = document.getElementById("current-conditions");
 
-function displayForecast() {};
+  // display data onto page
+  currentCityEl.textContent = city.name;
+  tempEl.textContent = `temp ${city.main.temp}\u00B0`;
+  humidityEl.textContent = `humidity ${city.main.humidity}%`;
+  windSpeedEl.textContent = `wind speed ${city.wind.speed} mph`;
+  currentConditionsEl.textContent = `conditions ${city.weather[0].description}`;
+};
+
+// logic.display forecast data
+var displayForecast = function(forecast) {
+  var hours = forecast.list;
+
+  // dom element that will hold child hourly forecast elements
+  var forecastContainerEl = document.getElementById("forecast-container");
+
+  // iterate through hours
+  for (let i = 0; i < hours.length; i++) {
+    // create article to hold successive elements
+    var forecastHourEl = document.createElement("article");
+
+    // create elements for each data point
+    var hourEl = document.createElement("h3");
+    hourEl.className = "hour";
+    hourEl.textContent = hours[i].dt_txt.split(" ")[1];
+
+    var tempEl = document.createElement("p");
+    tempEl.className = "temp";
+    tempEl.textContent = `temp ${hours[i].main.temp}\u00B0`;
+
+    var humidityEl = document.createElement("p");
+    humidityEl.className = "humidity";
+    humidityEl.textContent = `humidity ${hours[i].main.humidity}%`
+
+    var windSpeedEl = document.createElement("p");
+    windSpeedEl.className = "wind-speed";
+    windSpeedEl.textContent = `wind speed ${hours[i].wind.speed} mph`;
+
+    var conditionsEl = document.createElement("p");
+    conditionsEl.className = "conditions";
+    conditionsEl.textContent = `conditions ${hours[i].weather[0].description}`;
+
+    // append child element(s) to parent container
+    forecastHourEl.append(hourEl, tempEl, humidityEl, windSpeedEl, conditionsEl);
+    forecastContainerEl.appendChild(forecastHourEl);
+  };
+};
+
+// logic.capture user input
+var searchBar = function(event) {
+  event.preventDefault();
+  searchInputEl = document.querySelector("#search-input");
+
+  // removes possible leading and/or trailing white spaces from user input
+  var city = searchInputEl.value.trim();
+
+  if (city) {
+    getWeather(city);
+    searchHistory(city);
+    searchInputEl.value = "";
+  } else {
+    console.log("nothing to see here")
+  }
+};
+
+// logic.retaining recent search history
+var searchHistory = function(city) {
+  var recent = [];
+  var recentCity = city;
+  recent.push(recentCity);
+
+  for (var i = 0; i < recent.length; i++) {
+    var recentCityEl = document.createElement("button");
+    recentCityEl.setAttribute("type", "button")
+    recentCityEl.className = "btn";
+    recentCityEl.textContent = recent[i];
+
+    // ** pause : clicking on recentCityEl button needs to run getWeather() based on data-city **
+
+    searchHistoryEl.appendChild(recentCityEl);
+    console.log(searchHistoryEl);
+  }
+  console.log(recent);
+};
+
+// logic.display current year
+var copyrightYear = function() {
+  var year = new Date().getFullYear();
+  var copyrightEl = document.getElementById("copyright");
+  copyrightEl.textContent = `\u00A9 ${year} `;
+};
+
+copyrightYear();
+searchFormEl.addEventListener("submit", searchBar);
