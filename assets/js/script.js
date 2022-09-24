@@ -1,7 +1,6 @@
-// data.dom
+// data.global dom
 var searchFormEl = document.querySelector("#search-form")
-// var searchInputEl = document.querySelector("#search-input");
-var searchBtnEl = document.querySelector("#search-btn");
+var searchInputEl = document.querySelector("#search-input");
 var searchHistoryEl = document.querySelector("#search-history");
 
 // logic.fetching api data
@@ -84,17 +83,23 @@ var displayForecast = function(forecast) {
 // logic.capture user input
 var searchBar = function(event) {
   event.preventDefault();
-  var searchInputEl = document.querySelector("#search-input");
+  searchInputEl = document.querySelector("#search-input");
 
   // removes possible leading and/or trailing white spaces from user input
   var city = searchInputEl.value.trim();
 
   if (city) {
     getWeather(city);
+    searchHistory(city);
     searchInputEl.value = "";
   } else {
     console.log("nothing to see here")
   }
+};
+
+// logic.retaining recent search history
+var searchHistory = function(city) {
+  console.log(`i looked up ${city}`)
 };
 
 // logic.display current year
