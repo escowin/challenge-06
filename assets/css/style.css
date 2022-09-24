@@ -80,6 +80,9 @@ footer,
 
 
 /* MAIN | CURRENT CITY */
+.card {
+    background-color: rgba(26, 48, 56, 0.75);
+}
 #container-right {
     flex-grow: 1;
 }
