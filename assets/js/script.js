@@ -46,25 +46,42 @@ var displayCurrentWeather = function(city) {
 
 var displayForecast = function(forecast) {
   var hours = forecast.list;
+
+  var forecastContainerEl = document.getElementById("forecast-container");
   console.log(hours);
 
-  // dom elements
-  // time, temp, humidity, wind speed, conditions
-  // var hoursEl = document.querySelector(".time");
-  var hourEl = document.createElement("article");
-  
+  // iterate through hours
   for (let i = 0; i < hours.length; i++) {
-    var hour = hours[i].dt_txt.split(" ")[1];
-    // ** pause | each hour displays in console.log, but only one of the hours displays in hourEl repeatedly
-    hourEl.textContent = hour;
-    console.log(hourEl)
+    // create article to hold successive elements
+    var forecastHourEl = document.createElement("article");
 
-    // console.log(hours[i].dt_txt.split(" ")[1]);
-    // console.log(`${hours[i].main.temp}\u00B0`);
-    // console.log(`${hours[i].main.humidity}%`);
-    // console.log(`${hours[i].wind.speed} mph`);
-    // console.log(hours[i].weather[0].description);
-  }
+    // create elements for each data point
+    var hourEl = document.createElement("h3");
+    hourEl.className = "hour";
+    hourEl.textContent = hours[i].dt_txt.split(" ")[1];
+
+    var tempEl = document.createElement("p");
+    tempEl.className = "temp";
+    tempEl.textContent = `temp ${hours[i].main.temp}\u00B0`;
+
+    var humidityEl = document.createElement("p");
+    humidityEl.className = "humidity";
+    humidityEl.textContent = `humidity ${hours[i].main.humidity}%`
+
+    var windSpeedEl = document.createElement("p");
+    windSpeedEl.className = "wind-speed";
+    windSpeedEl.textContent = `wind speed ${hours[i].wind.speed} mph`;
+
+    var conditionsEl = document.createElement("p");
+    conditionsEl.className = "conditions";
+    conditionsEl.textContent = `conditions ${hours[i].weather[0].description}`;
+
+    // append data point elements to the parent article container
+    forecastHourEl.append(hourEl, tempEl, humidityEl, windSpeedEl, conditionsEl);
+
+    // append article to parent section container
+    forecastContainerEl.appendChild(forecastHourEl);
+  };
 };
 
 // logic.display current year
