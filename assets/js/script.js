@@ -46,8 +46,16 @@ var displayCurrentWeather = function(city) {
   currentConditionsEl.textContent = city.weather[0].description;
 };
 
-var displayForecast = function(hours) {
+var displayForecast = function(forecast) {
+  var hours = forecast.list;
   console.log(hours)
+  for (let i = 0; i < hours.length; i++) {
+    console.log(hours[i].dt_txt);
+    console.log(`${hours[i].main.temp}\u00B0`);
+    console.log(`${hours[i].main.humidity}%`);
+    console.log(`${hours[i].wind.speed} mph`);
+    console.log(hours[i].weather[0].description);
+  }
 }
 
 // logic.display current year
