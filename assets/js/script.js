@@ -102,9 +102,12 @@ var searchHistory = function(city) {
   recent.push(recentCity);
 
   for (var i = 0; i < recent.length; i++) {
-    var recentCityEl = document.createElement("a");
-    recentCityEl.setAttribute("href", "#");
+    var recentCityEl = document.createElement("button");
+    recentCityEl.setAttribute("type", "button")
+    recentCityEl.className = "btn";
     recentCityEl.textContent = recent[i];
+
+    // ** pause : clicking on recentCityEl button needs to run getWeather() based on data-city **
 
     searchHistoryEl.appendChild(recentCityEl);
     console.log(searchHistoryEl);
