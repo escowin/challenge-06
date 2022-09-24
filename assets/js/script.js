@@ -86,10 +86,15 @@ var searchBar = function(event) {
   event.preventDefault();
   var searchInputEl = document.querySelector("#search-input");
 
-  console.log("captures search bar input");
-
+  // removes possible leading and/or trailing white spaces from user input
   var city = searchInputEl.value.trim();
-  console.log(city);
+
+  if (city) {
+    getWeather(city);
+    searchInputEl.value = "";
+  } else {
+    console.log("nothing to see here")
+  }
 };
 
 // logic.display current year
@@ -101,4 +106,3 @@ var copyrightYear = function() {
 
 copyrightYear();
 searchFormEl.addEventListener("submit", searchBar);
-getWeather("Austin");
