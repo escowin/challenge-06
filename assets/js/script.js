@@ -1,10 +1,8 @@
 // data.dom
 var searchFormEl = document.querySelector("#search-form")
-var searchInputEl = document.querySelector("#search-input");
+// var searchInputEl = document.querySelector("#search-input");
 var searchBtnEl = document.querySelector("#search-btn");
 var searchHistoryEl = document.querySelector("#search-history");
-var currentWeatherEl = document.querySelector("#current-weather");
-var forecastEl = document.querySelector("#forecast");
 
 // logic.fetching api data
 var getWeather = function(city) {
@@ -25,7 +23,7 @@ var getWeather = function(city) {
   });
 };
 
-// logic.display weather data
+// logic.display current weather data
 var displayCurrentWeather = function(city) {
     console.log(city);
 
@@ -33,22 +31,23 @@ var displayCurrentWeather = function(city) {
   var currentCityEl = document.getElementById("current-city");
   var tempEl = document.getElementById("temp");
   var humidityEl = document.getElementById("humidity");
-  var windSpeedEl = document.getElementById("windspeed");
+  var windSpeedEl = document.getElementById("wind-speed");
   var currentConditionsEl = document.getElementById("current-conditions");
 
   // display data onto page
   currentCityEl.textContent = city.name;
-  tempEl.textContent = `${city.main.temp}\u00B0`;
-  humidityEl.textContent = `${city.main.humidity}%`;
-  windSpeedEl.textContent = `${city.wind.speed} mph`;
-  currentConditionsEl.textContent = city.weather[0].description;
+  tempEl.textContent = `temp ${city.main.temp}\u00B0`;
+  humidityEl.textContent = `humidity ${city.main.humidity}%`;
+  windSpeedEl.textContent = `wind speed ${city.wind.speed} mph`;
+  currentConditionsEl.textContent = `conditions ${city.weather[0].description}`;
 };
 
+// logic.display forecast data
 var displayForecast = function(forecast) {
   var hours = forecast.list;
 
+  // dom element that will hold child hourly forecast elements
   var forecastContainerEl = document.getElementById("forecast-container");
-  console.log(hours);
 
   // iterate through hours
   for (let i = 0; i < hours.length; i++) {
@@ -76,12 +75,21 @@ var displayForecast = function(forecast) {
     conditionsEl.className = "conditions";
     conditionsEl.textContent = `conditions ${hours[i].weather[0].description}`;
 
-    // append data point elements to the parent article container
+    // append child element(s) to parent container
     forecastHourEl.append(hourEl, tempEl, humidityEl, windSpeedEl, conditionsEl);
-
-    // append article to parent section container
     forecastContainerEl.appendChild(forecastHourEl);
   };
+};
+
+// logic.capture user input
+var searchBar = function(event) {
+  event.preventDefault();
+  var searchInputEl = document.querySelector("#search-input");
+
+  console.log("captures search bar input");
+
+  var city = searchInputEl.value.trim();
+  console.log(city);
 };
 
 // logic.display current year
@@ -92,4 +100,5 @@ var copyrightYear = function() {
 };
 
 copyrightYear();
+searchFormEl.addEventListener("submit", searchBar);
 getWeather("Austin");
