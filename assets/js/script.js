@@ -24,8 +24,6 @@ var getWeather = function(city) {
 
 // logic.display current weather data
 var displayCurrentWeather = function(city) {
-    console.log(city);
-
   // dom elements
   var currentCityEl = document.getElementById("current-city");
   var tempEl = document.getElementById("temp");
@@ -99,7 +97,19 @@ var searchBar = function(event) {
 
 // logic.retaining recent search history
 var searchHistory = function(city) {
-  console.log(`i looked up ${city}`)
+  var recent = [];
+  var recentCity = city;
+  recent.push(recentCity);
+
+  for (var i = 0; i < recent.length; i++) {
+    var recentCityEl = document.createElement("a");
+    recentCityEl.setAttribute("href", "#");
+    recentCityEl.textContent = recent[i];
+
+    searchHistoryEl.appendChild(recentCityEl);
+    console.log(searchHistoryEl);
+  }
+  console.log(recent);
 };
 
 // logic.display current year
