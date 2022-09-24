@@ -6,7 +6,6 @@ var searchHistoryEl = document.querySelector("#search-history");
 var currentWeatherEl = document.querySelector("#current-weather");
 var forecastEl = document.querySelector("#forecast");
 
-
 // logic.fetching api data
 var getWeather = function(city) {
   var location = city;
@@ -24,7 +23,6 @@ var getWeather = function(city) {
       displayForecast(data);
     });
   });
-
 };
 
 // logic.display weather data
@@ -48,20 +46,30 @@ var displayCurrentWeather = function(city) {
 
 var displayForecast = function(forecast) {
   var hours = forecast.list;
-  console.log(hours)
+  console.log(hours);
+
+  // dom elements
+  // time, temp, humidity, wind speed, conditions
+  // var hoursEl = document.querySelector(".time");
+  var hourEl = document.createElement("article");
+  
   for (let i = 0; i < hours.length; i++) {
-    console.log(hours[i].dt_txt);
-    console.log(`${hours[i].main.temp}\u00B0`);
-    console.log(`${hours[i].main.humidity}%`);
-    console.log(`${hours[i].wind.speed} mph`);
-    console.log(hours[i].weather[0].description);
+    var hour = hours[i].dt_txt.split(" ")[1];
+    // ** pause | each hour displays in console.log, but only one of the hours displays in hourEl repeatedly
+    hourEl.textContent = hour;
+    console.log(hourEl)
+
+    // console.log(hours[i].dt_txt.split(" ")[1]);
+    // console.log(`${hours[i].main.temp}\u00B0`);
+    // console.log(`${hours[i].main.humidity}%`);
+    // console.log(`${hours[i].wind.speed} mph`);
+    // console.log(hours[i].weather[0].description);
   }
-}
+};
 
 // logic.display current year
 var copyrightYear = function() {
   var year = new Date().getFullYear();
-
   var copyrightEl = document.getElementById("copyright");
   copyrightEl.textContent = `\u00A9 ${year} `;
 };
