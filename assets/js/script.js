@@ -11,13 +11,20 @@ var forecastEl = document.querySelector("#forecast");
 var getWeather = function(city) {
   var location = city;
   var key = "0962492a18dc2e6ff1c567a057f043f2";
-  var url = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${key}&units=imperial`;
+  var current = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${key}&units=imperial`;
+  var forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${key}&cnt=8&units=imperial`;
 
-  fetch(url).then(function(response){
+  fetch(current).then(function(response){
     response.json().then(function(data) {
       displayCurrentWeather(data);
     });
   });
+  fetch(forecast).then(function(response){
+    response.json().then(function(data) {
+      displayForecast(data);
+    });
+  });
+
 };
 
 // logic.display weather data
@@ -38,6 +45,10 @@ var displayCurrentWeather = function(city) {
   windSpeedEl.textContent = `${city.wind.speed} mph`;
   currentConditionsEl.textContent = city.weather[0].description;
 };
+
+var displayForecast = function(hours) {
+  console.log(hours)
+}
 
 // logic.display current year
 var copyrightYear = function() {
