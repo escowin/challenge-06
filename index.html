@@ -6,31 +6,31 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>W E A T H E R</title>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />"
+        <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" /> -->
         <link rel="stylesheet" href="./assets/css/style.css" />
         <script defer src="./assets/js/script.js"></script>
     </head>
     <body>
         <header>
-            <h1><a href="./">&mdash; W E A T H E R &mdash;</a></h1>                
+            <h1 id="title">
+                <a href="./">&mdash; weather &mdash;</a>
+            </h1>                
         </header>
 
         <section class="container">
             <!-- SIDE BAR -->
-            <aside id="container-left">
+            <aside id="search-and-history">
                 <!-- SEARCH INPUT -->
-                <section>
-                    <h2>Search</h2>
-                    <form id="search-form">
-                        <input type="text" placeholder="ex. Austin"
-                        id="search-input"/>
-                        <button type="submit" id="search-btn">Search</button>
-                    </form>
-                </section>
+                <form id="search-form">
+                    <label for="search-input" class="subheader">Look up a city</label>
+                    <input type="text" placeholder="ie. Austin"
+                    id="search-input"/>
+                    <button type="submit" id="search-btn" class="btn">Search</button>
+                </form>
 
                 <!-- SEARCH HISTORY | PAST CITIES-->
                 <section id="search-history">
-                    <h2>History</h2>
+                    <h2 class="subheader">History</h2>
                 </section>
             </aside>
 
@@ -38,12 +38,12 @@
             <main id="container-right">
                 <!-- CURRENT CITY | TODAY -->
                 <section>
-                    <h2>The Weather Today</h2>
-                    <article class="card">
+                    <h2 class="subheader">The Weather Today</h2>
+                    <article class="card" id="current-weather">
                         <h3 class="city-header" id="current-city"></h3>
                         <img class="weather-icon"/>
                                                 
-                        <div class="card-text" id="current-weather">
+                        <div class="card-text" >
                             <p id="temp">temp</p>
                             <p id="humidity">humidity</p>
                             <p id="wind-speed">wind speed</p>
