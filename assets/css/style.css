@@ -71,6 +71,16 @@ body {
     grid-column: span 4;
 }
 
+#current-details {
+    display: grid;
+    column-gap: .5rem;
+    grid-template-columns: auto 1fr;
+}
+
+#current-city, #current-conditions {
+    grid-column: span 2;
+}
+
 /* box */
 .btn {
     background-color: var(--button);
@@ -115,7 +125,7 @@ label {
     outline: none;
 }
 
-#current-weather {
+#current-details {
     background-color: var(--tertiary);
     box-shadow: var(--box-shadow) var(--tertiary);
     border-radius: 1rem;
@@ -132,16 +142,6 @@ footer {
     background-color: var(--primary);
     border-radius: 10px;
     box-shadow: var(--box-shadow) var(--primary);
-}
-
-/* MAIN | CURRENT CITY */
-#container-right {
-    flex-grow: 1;
-}
-
-.flex {
-    display: flex;
-    justify-content: space-around;
 }
 
 /* temperature styles */

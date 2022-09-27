@@ -25,7 +25,7 @@ var getWeather = function(city) {
 // logic.display current weather data
 var displayCurrentWeather = function(city) {
   // dom elements
-  var currentWeatherEl = document.getElementById("current-weather");
+  var currentDetailsEl = document.getElementById("current-details");
   var currentCityEl = document.getElementById("current-city");
   var tempEl = document.getElementById("temp");
   var humidityEl = document.getElementById("humidity");
@@ -34,17 +34,33 @@ var displayCurrentWeather = function(city) {
 
   // display data onto page
   currentCityEl.textContent = city.name;
-  tempEl.innerHTML = `<i class="fa-solid fa-temperature-half"></i> ${city.main.temp}\u00B0`;
-  humidityEl.innerHTML = `<i class="fa-solid fa-droplet"></i> ${city.main.humidity}%`;
-  windSpeedEl.innerHTML = `<i class="fa-solid fa-wind"></i> ${city.wind.speed} mph`;
-  currentConditionsEl.innerText = `conditions: ${city.weather[0].description}`;
+  tempEl.innerHTML = `${city.main.temp}\u00B0`;
+  humidityEl.innerHTML = `${city.main.humidity}%`;
+  windSpeedEl.innerHTML = `${city.wind.speed} mph`;
+  if (city.weather[0].main === "Clear") {
+    currentConditionsEl.innerHTML = `<i class="fa-solid fa-sun"></i> ${city.weather[0].description}`;
+  } else if (city.weather[0].main === "Rain") {
+    currentConditionsEl.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${city.weather[0].description}`;
+  } else if (city.weather[0].main === "Thunderstorm") {
+    currentConditionsEl.innerHTML = `<i class="fa-solid fa-cloud-bolt"></i> ${city.weather[0].description}`
+  } else if (city.weather[0].main === "Snow") {
+    currentConditionsEl.innerHTML = `<i class="fa-solid fa-snowflake"></i> ${city.weather[0].description}`
+  } else if (city.weather[0].main === "Tornado") {
+    currentConditionsEl.innerHTML = `<i class="fa-solid fa-tornado"></i> ${city.weather[0].description}`
+  } else if (city.weather[0].main === "Clouds") {
+    currentConditionsEl.innerHTML = `<i class="fa-solid fa-cloud"></i> ${city.weather[0].description}`
+  } else {
+    currentConditionsEl.innerHTML = `${city.weather[0].description}`;
+  };
 
+  // bug | styles remain from previous city
   if (city.main.temp >= 90) {
-    currentWeatherEl.className = "high";
-  } else if (city.main.temp < 50) {
-    currentWeatherEl.className = "low";
+    currentDetailsEl.className = "";
+    currentDetailsEl.className = "high";
+  } else if (city.main.temp <= 50) {
+    currentDetailsEl.className = "";
+    currentDetailsEl.className = "low";
   }
-
 };
 
 // logic.display forecast data
