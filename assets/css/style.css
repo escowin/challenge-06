@@ -27,14 +27,28 @@ a:hover {
     color: rgb(254, 156, 210);
 }
 
-
 .subheader {
     font-size: 1rem;
     letter-spacing: .1rem;
+    text-shadow: var(--text-shadow);
+    margin-bottom: .25rem;
 }
 
 h1 {
     text-align: center;
+}
+
+#forecast-container .subheader {
+    margin-top: .5rem;
+}
+
+.hour {
+    font-size: .9rem;
+    text-shadow: var(--text-shadow);
+}
+
+.forecast-details p {
+    text-indent: .5rem;
 }
 
 /* flow */
@@ -45,11 +59,6 @@ body {
     padding: .5rem;
     background-color: var(--secondary);
     color: var(--secondary);
-}
-
-.container {
-    display: flex;
-    flex-direction: column;
 }
 
 #search-form {
@@ -64,11 +73,15 @@ body {
     display: grid;
     grid-template-columns: repeat(4, 24%);
     gap: .25rem;
-    margin-bottom: .5rem;
 }
 
 #search-history .subheader {
     grid-column: span 4;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
 }
 
 #current-details {
@@ -77,14 +90,21 @@ body {
     grid-template-columns: auto 1fr;
 }
 
-#current-city, #current-conditions {
+#current-city, #forecast-container .subheader {
     grid-column: span 2;
+}
+
+#forecast-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    row-gap: .5rem;
 }
 
 /* box */
 .btn {
     background-color: var(--button);
-    color: var(--dark);
+    box-shadow: var(--box-shadow) var(--button);
+    color: var(--primary);
     padding: 1% 2%;
     border: none;
 }
@@ -112,16 +132,20 @@ label {
     border: none;
     padding: 10px;
     margin: 10px 0;
-    color: var(--dark);
     font-weight: bolder;
 }
 
 #search-input {
     width: 90%;
+    color: var(--dark);
+    background-color: var(--secondary);
+    box-shadow: var(--box-shadow) var(--secondary);
+    transition: 1s;
 }
 
 #search-input:focus {
     background-color: bisque;
+    box-shadow: var(--box-shadow) bisque;
     outline: none;
 }
 
@@ -133,12 +157,11 @@ label {
     margin: .5rem 0;
 }
 
-
 header,
-.container,
+main,
 footer {
-    margin: 10px;
-    padding: 20px;
+    margin: .5rem;
+    padding: .5rem 1rem .75rem 1rem;
     background-color: var(--primary);
     border-radius: 10px;
     box-shadow: var(--box-shadow) var(--primary);
@@ -151,8 +174,37 @@ footer {
     text-shadow: var(--text-shadow) var(--low);
 }
 
+.mid-high {
+    --mid-high: rgb(159, 97, 20);
+    color: var(--mid-high);
+    text-shadow: var(--text-shadow) var(--mid-high);
+}
+
 .high {
     --high: rgb(227, 65, 65);
     color: var(--high);
     text-shadow: var(--text-shadow) var(--high);
+}
+
+@media screen and (min-width: 768px) {
+    body {
+        padding: 2vw;
+    }
+
+    main {
+        margin-top: 1.25rem;
+        margin-bottom: 1.25rem;
+    }
+
+    #forecast-container {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    #forecast-container .subheader {
+        grid-column: span 4;
+    }
+
+    footer {
+        /* grid-column: span 2; */
+    }
 }

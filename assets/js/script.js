@@ -30,27 +30,31 @@ var displayCurrentWeather = function(city) {
   var tempEl = document.getElementById("temp");
   var humidityEl = document.getElementById("humidity");
   var windSpeedEl = document.getElementById("wind-speed");
+  var conditionsIconEl = document.getElementById("conditions-icon")
   var currentConditionsEl = document.getElementById("current-conditions");
 
   // display data onto page
   currentCityEl.textContent = city.name;
-  tempEl.innerHTML = `${city.main.temp}\u00B0`;
-  humidityEl.innerHTML = `${city.main.humidity}%`;
-  windSpeedEl.innerHTML = `${city.wind.speed} mph`;
+  tempEl.textContent = `${city.main.temp}\u00B0`;
+  humidityEl.textContent = `${city.main.humidity}%`;
+  windSpeedEl.textContent = `${city.wind.speed} mph`;
+  currentConditionsEl.textContent = `${city.weather[0].description}`;
   if (city.weather[0].main === "Clear") {
-    currentConditionsEl.innerHTML = `<i class="fa-solid fa-sun"></i> ${city.weather[0].description}`;
+    conditionsIconEl.innerHTML = `<i class="fa-solid fa-sun"></i>`;
   } else if (city.weather[0].main === "Rain") {
-    currentConditionsEl.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${city.weather[0].description}`;
+    conditionsIconEl.innerHTML = `<i class="fa-solid fa-cloud-rain"></i>`;
   } else if (city.weather[0].main === "Thunderstorm") {
-    currentConditionsEl.innerHTML = `<i class="fa-solid fa-cloud-bolt"></i> ${city.weather[0].description}`
+    conditionsIconEl.innerHTML = `<i class="fa-solid fa-cloud-bolt"></i>`
   } else if (city.weather[0].main === "Snow") {
-    currentConditionsEl.innerHTML = `<i class="fa-solid fa-snowflake"></i> ${city.weather[0].description}`
+    conditionsIconEl.innerHTML = `<i class="fa-solid fa-snowflake"></i>`
   } else if (city.weather[0].main === "Tornado") {
-    currentConditionsEl.innerHTML = `<i class="fa-solid fa-tornado"></i> ${city.weather[0].description}`
+    conditionsIconEl.innerHTML = `<i class="fa-solid fa-tornado"></i>`
   } else if (city.weather[0].main === "Clouds") {
-    currentConditionsEl.innerHTML = `<i class="fa-solid fa-cloud"></i> ${city.weather[0].description}`
+    conditionsIconEl.innerHTML = `<i class="fa-solid fa-cloud"></i>`
+  } else if (city.weather[0].id <= 701 || city.weather[0].id <= 771) {
+    conditionsIconEl.innerHTML = `<i class="fa-solid fa-smog"></i>`;
   } else {
-    currentConditionsEl.innerHTML = `${city.weather[0].description}`;
+    conditionsIconEl.innerText = "";
   };
 
   // bug | styles remain from previous city
@@ -74,6 +78,7 @@ var displayForecast = function(forecast) {
   for (let i = 0; i < hours.length; i++) {
     // create article to hold successive elements
     var forecastHourEl = document.createElement("article");
+    forecastHourEl.className = "forecast-details";
 
     // create elements for each data point
     var hourEl = document.createElement("h3");
