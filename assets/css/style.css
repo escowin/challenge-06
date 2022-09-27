@@ -3,7 +3,7 @@
     padding: 0;
     font-family: 'Montserrat', sans-serif;
     font-variant: small-caps;
-    border: 1px dotted red;
+    /* border: 1px dotted red; */
 }
 
 :root {
@@ -13,6 +13,7 @@
     --button: rgb(215, 226, 234);
     --dark: rgb(15, 20, 24);
     --box-shadow: 0 0 1vw 1vw;
+    --text-shadow: 0 0 .25rem;
 }
 
 /* typography */
@@ -115,7 +116,11 @@ label {
 }
 
 #current-weather {
+    background-color: var(--tertiary);
+    box-shadow: var(--box-shadow) var(--tertiary);
     border-radius: 1rem;
+    padding: .5rem;
+    margin: .5rem 0;
 }
 
 
@@ -130,9 +135,6 @@ footer {
 }
 
 /* MAIN | CURRENT CITY */
-.card {
-    background-color: rgba(26, 48, 56, 0.75);
-}
 #container-right {
     flex-grow: 1;
 }
@@ -142,12 +144,15 @@ footer {
     justify-content: space-around;
 }
 
-.btn-low {
-    background-color: rgb(45, 105, 45);
+/* temperature styles */
+.low {
+    --low: rgb(86, 170, 198);
+    color: var(--low);
+    text-shadow: var(--text-shadow) var(--low);
 }
-.btn-moderate {
-    background-color: rgb(167, 154, 55);
-}
-.btn-high {
-    background-color: rgb(123, 18, 18);
+
+.high {
+    --high: rgb(227, 65, 65);
+    color: var(--high);
+    text-shadow: var(--text-shadow) var(--high);
 }

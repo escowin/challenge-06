@@ -25,6 +25,7 @@ var getWeather = function(city) {
 // logic.display current weather data
 var displayCurrentWeather = function(city) {
   // dom elements
+  var currentWeatherEl = document.getElementById("current-weather");
   var currentCityEl = document.getElementById("current-city");
   var tempEl = document.getElementById("temp");
   var humidityEl = document.getElementById("humidity");
@@ -33,10 +34,17 @@ var displayCurrentWeather = function(city) {
 
   // display data onto page
   currentCityEl.textContent = city.name;
-  tempEl.textContent = `temp ${city.main.temp}\u00B0`;
-  humidityEl.textContent = `humidity ${city.main.humidity}%`;
-  windSpeedEl.textContent = `wind speed ${city.wind.speed} mph`;
-  currentConditionsEl.textContent = `conditions ${city.weather[0].description}`;
+  tempEl.innerHTML = `<i class="fa-solid fa-temperature-half"></i> ${city.main.temp}\u00B0`;
+  humidityEl.innerHTML = `<i class="fa-solid fa-droplet"></i> ${city.main.humidity}%`;
+  windSpeedEl.innerHTML = `<i class="fa-solid fa-wind"></i> ${city.wind.speed} mph`;
+  currentConditionsEl.innerText = `conditions: ${city.weather[0].description}`;
+
+  if (city.main.temp >= 90) {
+    currentWeatherEl.className = "high";
+  } else if (city.main.temp < 50) {
+    currentWeatherEl.className = "low";
+  }
+
 };
 
 // logic.display forecast data
@@ -115,6 +123,14 @@ var searchHistory = function(city) {
   console.log(recent);
 };
 
+// logic.display current date
+var currentDate = function() {
+  var todayEl = document.getElementById("today");
+
+  var today = moment().format('dddd, MMMM Do');
+  todayEl.textContent = today;
+}
+
 // logic.display current year
 var copyrightYear = function() {
   var year = new Date().getFullYear();
@@ -122,5 +138,6 @@ var copyrightYear = function() {
   copyrightEl.textContent = `\u00A9 ${year} `;
 };
 
+currentDate();
 copyrightYear();
 searchFormEl.addEventListener("submit", searchBar);

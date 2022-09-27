@@ -7,61 +7,53 @@
         <title>W E A T H E R</title>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
         <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" /> -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <link rel="stylesheet" href="./assets/css/style.css" />
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
         <script defer src="./assets/js/script.js"></script>
     </head>
+
     <body>
-        <header>
-            <h1 id="title">
-                <a href="./">&mdash; weather &mdash;</a>
-            </h1>                
+        <header id="search-and-history">
+            <!-- search bar -->
+            <form id="search-form">
+                <label for="search-input" class="subheader">Look up a city</label>
+                <input type="text" placeholder="ie. Austin"
+                id="search-input"/>
+                <button type="submit" id="search-btn" class="btn">Search</button>
+            </form>
+            <!-- history -->
+            <section id="search-history">
+                <h2 class="subheader">History</h2>
+            </section>                               
         </header>
 
-        <section class="container">
-            <!-- SIDE BAR -->
-            <aside id="search-and-history">
-                <!-- SEARCH INPUT -->
-                <form id="search-form">
-                    <label for="search-input" class="subheader">Look up a city</label>
-                    <input type="text" placeholder="ie. Austin"
-                    id="search-input"/>
-                    <button type="submit" id="search-btn" class="btn">Search</button>
-                </form>
-
-                <!-- SEARCH HISTORY | PAST CITIES-->
-                <section id="search-history">
-                    <h2 class="subheader">History</h2>
-                </section>
-            </aside>
-
-            <!-- CURRENT CITY -->
-            <main id="container-right">
-                <!-- CURRENT CITY | TODAY -->
-                <section>
-                    <h2 class="subheader">The Weather Today</h2>
-                    <article class="card" id="current-weather">
-                        <h3 class="city-header" id="current-city"></h3>
-                        <img class="weather-icon"/>
-                                                
-                        <div class="card-text" >
-                            <p id="temp">temp</p>
-                            <p id="humidity">humidity</p>
-                            <p id="wind-speed">wind speed</p>
-                            <p id="current-conditions">current conditions</p>
-                        </div>
-                        
-                    </article>
-                </section>
-                
-                <!-- CURRENT CITY | 5-DAY FORECAST -->
-                <section id="forecast-container">
-                    <h2>24 Hour Forecast</h2>
-                </section>
-            </main>
-        </section>
+        <!-- weather data -->
+        <main class="container">
+            <!-- current weather -->
+            <section>
+                <h2 class="subheader" id="today">The Weather Today</h2>
+                <article id="current-weather">
+                    <h3 class="city-header" id="current-city"></h3>
+                    <div class="card-text" >
+                        <p id="temp">temp</p>
+                        <p id="humidity">humidity</p>
+                        <p id="wind-speed">wind speed</p>
+                        <p id="current-conditions">current conditions</p>
+                    </div>
+                </article>
+            </section>
+            <!-- 24 hour forecast -->
+            <section id="forecast-container">
+                <h2 class="subheader">24 Hour Forecast</h2>
+            </section>
+        </main>
 
         <footer>
-            <p><span id="copyright"></span><a href="https://github.com/escowin/weather-dashboard" target="_blank">Edwin Escobar</a></p>
+            <p>
+                <span id="copyright"></span>
+                <a href="https://github.com/escowin/weather-dashboard" target="_blank">Weather</a> by Edwin Escobar
+            </p>
         </footer>
     </body>
 </html>
