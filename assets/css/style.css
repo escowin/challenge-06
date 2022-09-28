@@ -7,9 +7,9 @@
 }
 
 :root {
-    --primary: rgb(44, 106, 160);
+    --primary: rgba(44, 106, 160, 0.9);
     --secondary: rgb(212, 236, 255);
-    --tertiary: rgba(26, 48, 56, 0.75);
+    --tertiary: rgba(26, 48, 56, 0.65);
     --button: rgb(215, 226, 234);
     --dark: rgb(15, 20, 24);
     --box-shadow: 0 0 1vw 1vw;
@@ -48,27 +48,26 @@ h1 {
 }
 
 .forecast-details p {
-    text-indent: .5rem;
+    text-indent: .1rem;
 }
 
 .conditions {
-    text-align: center;
-    font-size: .95rem;
+    font-size: .8rem;
 }
 
 /* flow */
+html {
+    background: radial-gradient(var(--secondary), rgb(124, 150, 172));
+}
+
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     padding: .5rem;
-    background-color: var(--secondary);
     color: var(--secondary);
 }
 
 #search-form {
-    /* display: flex;
-    justify-content: space-between; */
     display: grid;
     column-gap: .25rem;
     grid-template-columns: 1fr auto;
@@ -170,7 +169,7 @@ header,
 main,
 footer {
     margin: .5rem;
-    padding: .5rem 1rem .75rem 1rem;
+    padding: .5rem .85rem .75rem .85rem;
     background-color: var(--primary);
     border-radius: 10px;
     box-shadow: var(--box-shadow) var(--primary);
@@ -184,7 +183,7 @@ footer {
 }
 
 .mid-high {
-    --mid-high: rgb(159, 97, 20);
+    --mid-high: rgb(159, 85, 20);
     color: var(--mid-high);
     text-shadow: var(--text-shadow) var(--mid-high);
 }
@@ -254,6 +253,10 @@ footer {
         margin: 0;
     }
 
+    header, main {
+        padding: .5rem 1.75rem;
+    }
+
     #search-form {
         gap: 1.75rem;
         margin-bottom: 1rem;
@@ -266,5 +269,11 @@ footer {
 
     #search-history .btn, #current-weather {
         margin-bottom: 1.5rem;
+    }
+
+    footer {
+        background-color: transparent;
+        box-shadow: none;
+        text-shadow: var(--text-shadow);
     }
 }

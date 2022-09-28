@@ -2,6 +2,7 @@
 var searchFormEl = document.querySelector("#search-form")
 var searchInputEl = document.querySelector("#search-input");
 var searchHistoryEl = document.querySelector("#search-history");
+var currentDetailsEl = document.getElementById("current-details");
 
 // logic.fetching api data
 var getWeather = function(city) {
@@ -22,11 +23,22 @@ var getWeather = function(city) {
   });
 };
 
+var temperatureStyles = function(temp) {
+    // bug | styles remain from previous city
+    if (temp >= 100) {
+      currentDetailsEl.className = "high";
+    } else if (temp >= 90 && temp < 100) {
+      currentDetailsEl.className = "mid-high"
+    } else if (temp <= 50) {
+      currentDetailsEl.className = "low";
+    } else {
+      currentDetailsEl.className = ""
+    }
+};
 
 // logic.display current weather data
 var displayCurrentWeather = function(city) {
   // dom elements
-  var currentDetailsEl = document.getElementById("current-details");
   var currentCityEl = document.getElementById("current-city");
   var tempEl = document.getElementById("temp");
   var humidityEl = document.getElementById("humidity");
@@ -58,20 +70,13 @@ var displayCurrentWeather = function(city) {
     conditionsIconEl.innerText = "";
   };
 
-  // bug | styles remain from previous city
-  if (city.main.temp >= 90) {
-    currentDetailsEl.className = "";
-    currentDetailsEl.className = "high";
-  } else if (city.main.temp <= 50) {
-    currentDetailsEl.className = "";
-    currentDetailsEl.className = "low";
-  }
+  temperatureStyles(city.main.temp);
 };
 
 // logic.display forecast data
 var displayForecast = function(forecast) {
   var hours = forecast.list;
-  console.log(forecast.city.timezone)
+  // console.log(forecast.city.timezone)
 
   // dom element that will hold child hourly forecast elements
   var forecastContainerEl = document.getElementById("forecast-container");
@@ -85,7 +90,6 @@ var displayForecast = function(forecast) {
 
   // iterate through hours
   for (let i = 0; i < hours.length; i+= 8) {
-    console.log(hours[i])
     // create article to hold successive elements
     var forecastDayEl = document.createElement("article");
     forecastDayEl.className = "forecast-details";
@@ -109,8 +113,23 @@ var displayForecast = function(forecast) {
 
     var conditionsEl = document.createElement("p");
     conditionsEl.className = "conditions";
-    if (hours[0].weather[0].main === "Clear") {}
-    conditionsEl.textContent = `${hours[i].weather[0].description}`;
+    if (hours[i].weather[0].main === "Clear") {
+      conditionsEl.innerHTML = `<i class="fa-solid fa-sun"></i> ${hours[i].weather[0].description}`;
+    } else if (hours[i].weather[0].main === "Rain") {
+      conditionsEl.innerHTML = `<i class="fa-solid fa-cloud-rain"></i> ${hours[i].weather[0].description}`;
+    } else if (hours[i].weather[0].main === "Thunderstorm") {
+      conditionsEl.innerHTML = `<i class="fa-solid cloud-bolt"></i> ${hours[i].weather[0].description}`;
+    } else if (hours[i].weather[0].main === "Snow") {
+      conditionsEl.innerHTML = `<i class="fa-solid fa-snowflake"></i> ${hours[i].weather[0].description}`;
+    } else if (hours[i].weather[0].main === "Tornado") {
+      conditionsEl.innerHTML = `<i class="fa-solid fa-tornado"></i> ${hours[i].weather[0].description}`;
+    } else if (hours[i].weather[0].main === "Clouds") {
+      conditionsEl.innerHTML = `<i class="fa-solid fa-cloud"></i> ${hours[i].weather[0].description}`;
+    } else if (hours[i].weather[0].id <= 701 || hours[i].weather[0].id <= 771) {
+      conditionsEl.innerHTML = `<i class="fa-solid fa-smog"></i> ${hours[i].weather[0].description}`;
+    } else {
+      conditionsEl.innerHTML = `${hours[i].weather[0].description}`
+    }
 
     // append child element(s) to parent container
     forecastDayEl.append(dayEl, tempEl, humidityEl, windSpeedEl, conditionsEl);
