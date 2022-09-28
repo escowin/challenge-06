@@ -156,17 +156,18 @@ var searchHistory = function(city) {
 };
 
 var searchHistoryCities = function(event) {
-  var pastCity = event.target.getAttribute("data-city");
-  console.log(pastCity);
-}
+  var searchedCity = event.target.getAttribute("data-city");
+  if (searchedCity) {
+    getWeather(searchedCity);
+  }
+};
 
 // logic.display current date
 var currentDate = function() {
   var todayEl = document.getElementById("today");
-
   var today = moment().format('dddd, MMMM Do h:mm:ss a');
   todayEl.textContent = today;
-}
+};
 
 // logic.display current year
 var copyrightYear = function() {
