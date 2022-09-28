@@ -145,24 +145,29 @@ var searchHistory = function(city) {
 
   for (var i = 0; i < recent.length; i++) {
     var recentCityEl = document.createElement("button");
-    recentCityEl.setAttribute("type", "button")
+    recentCityEl.setAttribute("type", "button");
+    recentCityEl.setAttribute("data-city", `${city}`);
     recentCityEl.className = "btn";
     recentCityEl.textContent = recent[i];
-
-    // ** pause : clicking on recentCityEl button needs to run getWeather() based on data-city **
 
     searchHistoryEl.appendChild(recentCityEl);
     console.log(searchHistoryEl);
   }
 };
 
+var searchHistoryCities = function(event) {
+  var searchedCity = event.target.getAttribute("data-city");
+  if (searchedCity) {
+    getWeather(searchedCity);
+  }
+};
+
 // logic.display current date
 var currentDate = function() {
   var todayEl = document.getElementById("today");
-
   var today = moment().format('dddd, MMMM Do h:mm:ss a');
   todayEl.textContent = today;
-}
+};
 
 // logic.display current year
 var copyrightYear = function() {
@@ -174,3 +179,4 @@ var copyrightYear = function() {
 setInterval(currentDate, 1000);
 copyrightYear();
 searchFormEl.addEventListener("submit", searchBar);
+searchHistoryEl.addEventListener("click", searchHistoryCities);
