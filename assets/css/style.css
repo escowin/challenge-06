@@ -7,9 +7,9 @@
 }
 
 :root {
-    --primary: rgb(44, 106, 160);
+    --primary: rgba(44, 106, 160, 0.9);
     --secondary: rgb(212, 236, 255);
-    --tertiary: rgba(26, 48, 56, 0.75);
+    --tertiary: rgba(26, 48, 56, 0.65);
     --button: rgb(215, 226, 234);
     --dark: rgb(15, 20, 24);
     --box-shadow: 0 0 1vw 1vw;
@@ -34,6 +34,11 @@ a:hover {
     margin-bottom: .25rem;
 }
 
+#today {
+    font-size: .9rem;
+    padding: .5rem 0;
+}
+
 h1 {
     text-align: center;
 }
@@ -42,28 +47,32 @@ h1 {
     margin-top: .5rem;
 }
 
-.hour {
+.day {
     font-size: .9rem;
     text-shadow: var(--text-shadow);
 }
 
 .forecast-details p {
-    text-indent: .5rem;
+    text-indent: .1rem;
+}
+
+.conditions {
+    font-size: .8rem;
 }
 
 /* flow */
+html {
+    background: radial-gradient(var(--secondary), rgb(124, 150, 172));
+}
+
 body {
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    padding: .5rem;
-    background-color: var(--secondary);
+    padding: 1rem .5rem;
     color: var(--secondary);
 }
 
 #search-form {
-    /* display: flex;
-    justify-content: space-between; */
     display: grid;
     column-gap: .25rem;
     grid-template-columns: 1fr auto;
@@ -71,8 +80,8 @@ body {
 
 #search-history {
     display: grid;
-    grid-template-columns: repeat(4, 24%);
-    gap: .25rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .75rem 1rem;
 }
 
 #search-history .subheader {
@@ -90,14 +99,18 @@ main {
     grid-template-columns: auto 1fr;
 }
 
-#current-city, #forecast-container .subheader {
+#current-city {
     grid-column: span 2;
 }
 
 #forecast-container {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: repeat(3, 1fr);
     row-gap: .5rem;
+}
+
+#forecast-container .subheader {
+    grid-column: span 3;
 }
 
 /* box */
@@ -161,7 +174,7 @@ header,
 main,
 footer {
     margin: .5rem;
-    padding: .5rem 1rem .75rem 1rem;
+    padding: .5rem .85rem .75rem .85rem;
     background-color: var(--primary);
     border-radius: 10px;
     box-shadow: var(--box-shadow) var(--primary);
@@ -175,7 +188,7 @@ footer {
 }
 
 .mid-high {
-    --mid-high: rgb(159, 97, 20);
+    --mid-high: rgb(174, 95, 64);
     color: var(--mid-high);
     text-shadow: var(--text-shadow) var(--mid-high);
 }
@@ -188,7 +201,7 @@ footer {
 
 @media screen and (min-width: 768px) {
     body {
-        padding: 2vw;
+        padding: 10vw 2vw;
     }
 
     main {
@@ -201,12 +214,13 @@ footer {
     }
 
     #forecast-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 
     #forecast-container .subheader {
-        grid-column: span 4;
+        grid-column: span 5;
     }
+
 
     /* typography */
     .subheader {
@@ -222,8 +236,20 @@ footer {
         margin-bottom: 1rem;
     }
 
-    #current-city {
+    #today, #current-city {
         font-size: 1.5rem;
+    }
+
+    #current-details i, #current-details p {
+        font-size: 1.25rem;
+    }
+
+    .forecast-details p {
+        font-size: 1.15rem;
+    }
+
+    .day {
+        font-size: 1.25rem;
     }
 }
 
@@ -235,6 +261,7 @@ footer {
         gap: 2rem;
         justify-content: center;
         height: 100%;
+        padding-top: 20vh;
     }
 
     footer {
@@ -243,6 +270,10 @@ footer {
     
     header, main, footer {
         margin: 0;
+    }
+
+    header, main {
+        padding: .5rem 1.75rem;
     }
 
     #search-form {
@@ -257,5 +288,35 @@ footer {
 
     #search-history .btn, #current-weather {
         margin-bottom: 1.5rem;
+    }
+
+    #today {
+        padding-bottom: 1rem;
+    }
+
+    #current-details i {
+        padding-left: .25rem;
+    }
+
+    footer {
+        background-color: transparent;
+        box-shadow: none;
+        text-shadow: var(--text-shadow);
+    }
+
+    /* typography */
+
+    #current-city {
+        font-size: 2.25rem;
+    }
+
+    #current-details i,
+    #current-details p,
+    .day {
+        font-size: 1.35rem
+    }
+
+    .btn, .forecast-details p {
+        font-size: 1.25rem;
     }
 }
