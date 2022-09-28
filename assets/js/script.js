@@ -8,7 +8,7 @@ var getWeather = function(city) {
   var location = city;
   var key = "0962492a18dc2e6ff1c567a057f043f2";
   var current = `https://api.openweathermap.org/data/2.5/weather?q=${location}&appid=${key}&units=imperial`;
-  var forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${key}&cnt=8&units=imperial`;
+  var forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${location}&appid=${key}&units=imperial`;
 
   fetch(current).then(function(response){
     response.json().then(function(data) {
@@ -33,10 +33,6 @@ var displayCurrentWeather = function(city) {
   var windSpeedEl = document.getElementById("wind-speed");
   var conditionsIconEl = document.getElementById("conditions-icon")
   var currentConditionsEl = document.getElementById("current-conditions");
-
-  // current time. goal | show city's local time
-  // consider using moment timezone
-  console.log(moment().utcOffset(city.timezone).local(true).format("h:mm a"))
 
   // display data onto page
   currentCityEl.textContent = `${city.name}`;
@@ -75,6 +71,7 @@ var displayCurrentWeather = function(city) {
 // logic.display forecast data
 var displayForecast = function(forecast) {
   var hours = forecast.list;
+  console.log(forecast.city.timezone)
 
   // dom element that will hold child hourly forecast elements
   var forecastContainerEl = document.getElementById("forecast-container");
@@ -83,19 +80,20 @@ var displayForecast = function(forecast) {
 
   var forecastHeaderEl = document.createElement("h2");
   forecastHeaderEl.className = "subheader";
-  forecastHeaderEl.textContent = "24-Hour Forecast";
+  forecastHeaderEl.textContent = "5-Day Forecast";
   forecastContainerEl.appendChild(forecastHeaderEl);
 
   // iterate through hours
-  for (let i = 0; i < hours.length; i++) {
+  for (let i = 0; i < hours.length; i+= 8) {
+    console.log(hours[i])
     // create article to hold successive elements
-    var forecastHourEl = document.createElement("article");
-    forecastHourEl.className = "forecast-details";
+    var forecastDayEl = document.createElement("article");
+    forecastDayEl.className = "forecast-details";
 
     // create elements for each data point
-    var hourEl = document.createElement("h3");
-    hourEl.className = "hour";
-    hourEl.textContent = moment(hours[i].dt_txt).format("h:mm a");
+    var dayEl = document.createElement("h3");
+    dayEl.className = "day";
+    dayEl.textContent = moment(hours[i].dt_txt).format("MMMM DD");
 
     var tempEl = document.createElement("p");
     tempEl.className = "temp";
@@ -115,8 +113,8 @@ var displayForecast = function(forecast) {
     conditionsEl.textContent = `${hours[i].weather[0].description}`;
 
     // append child element(s) to parent container
-    forecastHourEl.append(hourEl, tempEl, humidityEl, windSpeedEl, conditionsEl);
-    forecastContainerEl.appendChild(forecastHourEl);
+    forecastDayEl.append(dayEl, tempEl, humidityEl, windSpeedEl, conditionsEl);
+    forecastContainerEl.appendChild(forecastDayEl);
   };
 };
 
@@ -151,7 +149,6 @@ var searchHistory = function(city) {
     recentCityEl.textContent = recent[i];
 
     searchHistoryEl.appendChild(recentCityEl);
-    console.log(searchHistoryEl);
   }
 };
 
@@ -174,6 +171,10 @@ var copyrightYear = function() {
   var year = new Date().getFullYear();
   var copyrightEl = document.getElementById("copyright");
   copyrightEl.textContent = `\u00A9 ${year} `;
+  console.log(`
+  \u00A9 ${year} Edwin M. Escobar
+  https://github.com/escowin/weather-dashboard
+  `);
 };
 
 setInterval(currentDate, 1000);

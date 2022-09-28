@@ -42,13 +42,18 @@ h1 {
     margin-top: .5rem;
 }
 
-.hour {
+.day {
     font-size: .9rem;
     text-shadow: var(--text-shadow);
 }
 
 .forecast-details p {
     text-indent: .5rem;
+}
+
+.conditions {
+    text-align: center;
+    font-size: .95rem;
 }
 
 /* flow */
@@ -71,8 +76,8 @@ body {
 
 #search-history {
     display: grid;
-    grid-template-columns: repeat(4, 24%);
-    gap: .25rem;
+    grid-template-columns: repeat(4, 1fr);
+    gap: .75rem 1rem;
 }
 
 #search-history .subheader {
@@ -90,14 +95,18 @@ main {
     grid-template-columns: auto 1fr;
 }
 
-#current-city, #forecast-container .subheader {
+#current-city {
     grid-column: span 2;
 }
 
 #forecast-container {
     display: grid;
-    grid-template-columns: 1fr auto;
+    grid-template-columns: repeat(3, 1fr);
     row-gap: .5rem;
+}
+
+#forecast-container .subheader {
+    grid-column: span 3;
 }
 
 /* box */
@@ -201,11 +210,11 @@ footer {
     }
 
     #forecast-container {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(5, 1fr);
     }
 
     #forecast-container .subheader {
-        grid-column: span 4;
+        grid-column: span 5;
     }
 
     /* typography */
