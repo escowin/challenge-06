@@ -6,62 +6,57 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>W E A T H E R</title>
         <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/css/bootstrap.min.css" />"
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.min.css" />
         <link rel="stylesheet" href="./assets/css/style.css" />
+        <script defer src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.4/moment.min.js"></script>
         <script defer src="./assets/js/script.js"></script>
     </head>
+
     <body>
-        <header>
-            <h1><a href="./">&mdash; W E A T H E R &mdash;</a></h1>                
+        <header id="search-and-history">
+            <!-- search bar -->
+            <form id="search-form">
+                <label for="search-input" class="subheader">Look up a city</label>
+                <input type="text" placeholder="ie. Austin"
+                id="search-input"/>
+                <button type="submit" id="search-btn" class="btn">Search</button>
+            </form>
+            <!-- history -->
+            <section id="search-history">
+                <h2 class="subheader">History</h2>
+            </section>                               
         </header>
 
-        <section class="container">
-            <!-- SIDE BAR -->
-            <aside id="container-left">
-                <!-- SEARCH INPUT -->
-                <section>
-                    <h2>Search</h2>
-                    <form id="search-form">
-                        <input type="text" placeholder="ex. Austin"
-                        id="search-input"/>
-                        <button type="submit" id="search-btn">Search</button>
-                    </form>
-                </section>
+        <!-- weather info -->
+        <main class="container">
+            <!-- current weather -->
+            <section id="current-weather">
+                <h2 class="subheader" id="today"></h2>
+                <article id="current-details">
+                    <h3 id="current-city"></h3>
+                    <i class="fa-solid fa-temperature-half"></i> 
+                    <p id="temp">temperature</p>
 
-                <!-- SEARCH HISTORY | PAST CITIES-->
-                <section id="search-history">
-                    <h2>History</h2>
-                </section>
-            </aside>
+                    <i class="fa-solid fa-droplet"></i> 
+                    <p id="humidity">humidity</p>
 
-            <!-- CURRENT CITY -->
-            <main id="container-right">
-                <!-- CURRENT CITY | TODAY -->
-                <section>
-                    <h2>The Weather Today</h2>
-                    <article class="card">
-                        <h3 class="city-header" id="current-city"></h3>
-                        <img class="weather-icon"/>
-                                                
-                        <div class="card-text" id="current-weather">
-                            <p id="temp">temp</p>
-                            <p id="humidity">humidity</p>
-                            <p id="wind-speed">wind speed</p>
-                            <p id="current-conditions">current conditions</p>
-                        </div>
-                        
-                    </article>
-                </section>
-                
-                <!-- CURRENT CITY | 5-DAY FORECAST -->
-                <section id="forecast-container">
-                    <h2>24 Hour Forecast</h2>
-                </section>
-            </main>
-        </section>
+                    <i class="fa-solid fa-wind"></i> 
+                    <p id="wind-speed">wind speed</p>
+                    
+                    <p id="conditions-icon"></p>
+                    <p id="current-conditions">current conditions</p>
+                </article>
+            </section>
+            <!-- 24 hour forecast -->
+            <section id="forecast-container">
+            </section>
+        </main>
 
         <footer>
-            <p><span id="copyright"></span><a href="https://github.com/escowin/weather-dashboard" target="_blank">Edwin Escobar</a></p>
+            <p>
+                <span id="copyright"></span>
+                <a href="https://github.com/escowin/weather-dashboard" target="_blank" id="title">weather</a> by Edwin escobar
+            </p>
         </footer>
     </body>
 </html>
