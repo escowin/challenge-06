@@ -24,7 +24,6 @@ var getWeather = function(city) {
 };
 
 var temperatureStyles = function(temp) {
-    // bug | styles remain from previous city
     if (temp >= 100) {
       currentDetailsEl.className = "high";
     } else if (temp >= 90 && temp < 100) {
@@ -47,7 +46,11 @@ var displayCurrentWeather = function(city) {
   var currentConditionsEl = document.getElementById("current-conditions");
 
   // display data onto page
-  currentCityEl.textContent = `${city.name}`;
+  if (city.sys.country != "US") {
+    currentCityEl.textContent = `${city.name}, ${city.sys.country}`;
+  } else {
+    currentCityEl.textContent = `${city.name}`;
+  }
   tempEl.textContent = `${city.main.temp}\u00B0`;
   humidityEl.textContent = `${city.main.humidity}%`;
   windSpeedEl.textContent = `${city.wind.speed} mph`;
@@ -130,6 +133,8 @@ var displayForecast = function(forecast) {
     } else {
       conditionsEl.innerHTML = `${hours[i].weather[0].description}`
     }
+
+    // temperatureStyles(hours[i].main.temp);
 
     // append child element(s) to parent container
     forecastDayEl.append(dayEl, tempEl, humidityEl, windSpeedEl, conditionsEl);

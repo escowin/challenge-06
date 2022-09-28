@@ -34,6 +34,11 @@ a:hover {
     margin-bottom: .25rem;
 }
 
+#today {
+    font-size: .9rem;
+    padding: .5rem 0;
+}
+
 h1 {
     text-align: center;
 }
@@ -63,7 +68,7 @@ html {
 body {
     display: flex;
     flex-direction: column;
-    padding: .5rem;
+    padding: 1rem .5rem;
     color: var(--secondary);
 }
 
@@ -183,7 +188,7 @@ footer {
 }
 
 .mid-high {
-    --mid-high: rgb(159, 85, 20);
+    --mid-high: rgb(174, 95, 64);
     color: var(--mid-high);
     text-shadow: var(--text-shadow) var(--mid-high);
 }
@@ -196,7 +201,7 @@ footer {
 
 @media screen and (min-width: 768px) {
     body {
-        padding: 2vw;
+        padding: 10vw 2vw;
     }
 
     main {
@@ -216,6 +221,7 @@ footer {
         grid-column: span 5;
     }
 
+
     /* typography */
     .subheader {
         font-size: 1.5rem;
@@ -230,8 +236,20 @@ footer {
         margin-bottom: 1rem;
     }
 
-    #current-city {
+    #today, #current-city {
         font-size: 1.5rem;
+    }
+
+    #current-details i, #current-details p {
+        font-size: 1.25rem;
+    }
+
+    .forecast-details p {
+        font-size: 1.15rem;
+    }
+
+    .day {
+        font-size: 1.25rem;
     }
 }
 
@@ -243,6 +261,7 @@ footer {
         gap: 2rem;
         justify-content: center;
         height: 100%;
+        padding-top: 20vh;
     }
 
     footer {
@@ -271,9 +290,33 @@ footer {
         margin-bottom: 1.5rem;
     }
 
+    #today {
+        padding-bottom: 1rem;
+    }
+
+    #current-details i {
+        padding-left: .25rem;
+    }
+
     footer {
         background-color: transparent;
         box-shadow: none;
         text-shadow: var(--text-shadow);
+    }
+
+    /* typography */
+
+    #current-city {
+        font-size: 2.25rem;
+    }
+
+    #current-details i,
+    #current-details p,
+    .day {
+        font-size: 1.35rem
+    }
+
+    .btn, .forecast-details p {
+        font-size: 1.25rem;
     }
 }
